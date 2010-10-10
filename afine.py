@@ -19,30 +19,6 @@ def zaszyfruj_alfabet(a, b):
 	szyfr = lambda x : zaszyfruj_litere(x, a, b);
 	return ''.join(map(szyfr, list(letters)))
 
-def nznajdz_odwrotnosc(a, modn):
-	print "szukam odwrotnosci", a
-	# znalesc takie b, ze 
-	# a * b % modn = 1
-	u = 1; w = a;
-	x = 0; z = modn;
-	while (w != 0):
-		if w < z:
-			tmp = u
-			u = x
-			x = tmp
-			tmp = w
-			w = z
-			z = tmp
-		q = w / z
-		u = u - q * x
-		w = w - q * z
-	if z == 1:
-		if x < 0:
-			x = x + modn
-			return x
-	else:
-		return -1
-
 def znajdz_odwrotnosc(a, modn):
 	for i in xrange(modn):
 		if sprawdz_odwrotnosc(a, i, modn):
@@ -169,7 +145,7 @@ if __name__ == "__main__":
 			zapisz_do_pliku(PLIK_DECRYPT, odszyfruj_tekst(zaszyfrowany_tekst, klucze[0], klucze[1]))
 		elif options.jawny_flag:
 			print "kryptoanaliza z tekstem jawnym"
-			pomoc = odczytaj_plik(PLIK_EXTRA)
+			pomoc = odczytaj_plik(PLIK_EXTRA).strip()
 			zaszyfrowany_tekst = odczytaj_plik(PLIK_CRYPTO)
 			if (len(pomoc) < len(zaszyfrowany_tekst)):
 				dlugosc = len(pomoc)
@@ -178,7 +154,6 @@ if __name__ == "__main__":
 			wyniki = set()
 			for i in xrange(dlugosc):
 				wynik = set()
-				print "next"
 				for a in range(26):
 					if nwd (a, 26) == 1:
 						for b in range(26):
@@ -189,7 +164,7 @@ if __name__ == "__main__":
 						wyniki.add(i)
 				else:
 					print "wyniki = ", wyniki, " &  ", wynik
-					wyniki = wyniki & wyniki
+					wyniki = wyniki & wynik
 			print pomoc[dlugosc - 1]
 			print zaszyfrowany_tekst[dlugosc - 1]
 			print wyniki
