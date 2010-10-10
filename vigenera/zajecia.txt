@@ -1,0 +1,17 @@
+k = kluczyk|kluczyk|kluczyk
+m = tekstdo|zaszyfr|owania
+
+
+M[a] = c[a + k]
+M[b] = c[b + k]
+M[c] = c[c + k]
+
+C = Mk
+C[l] = M[l-k]
+
+E(k, m)[i] = m[i] + k[i mod N]
+
+dla i szukamy k[i]
+
+c[j] dla j = i mod N
+c[j] = m[j] + k[i]/k
