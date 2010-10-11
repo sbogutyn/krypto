@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import unittest
 import afine
 
@@ -16,9 +17,9 @@ class TestAfiniczneSzyfrowanie(unittest.TestCase):
 		self.assertEqual("bcd", afine.zaszyfruj_tekst("abc", 1, 1))
 	
 	def test_nwd(self):
-		self.assertEqual(1, nwd(1, 26))
-		self.assertEqual(1, nwd(3, 26))
-		self.assertEqual(1, nwd(5, 26))
+		self.assertEqual(1, afine.nwd(1, 26))
+		self.assertEqual(1, afine.nwd(3, 26))
+		self.assertEqual(1, afine.nwd(5, 26))
 	
 
 
