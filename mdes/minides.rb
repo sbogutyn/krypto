@@ -44,8 +44,14 @@ class Szyfrowanie
 end
 
 class Deszyfrowanie
+  
+  def initialize(tekst, klucz)
+    @tekst = tekst
+    @klucz = klucz
+  end
+
   def to_s
-    "Deszyfrowanie"
+    "Deszyfrowanie tekstu: \"#{@tekst}\" z kluczem \"#{@klucz}\""
   end
 end
 
@@ -75,7 +81,9 @@ optparse = OptionParser.new do |opts|
   end
 
   opts.on('-d', '--deszyfrowanie', 'Deszyfrowanie tekstu z pliku crypto.txt do decrypt.txt') do
-    puts Deszyfrowanie.new
+    tekst = czytaj_plik(CRYPTO)
+    klucz = czytaj_plik(KEY)
+    puts Deszyfrowanie.new(tekst, klucz)
   end
 
   opts.on('-a', '--analiza', 'Analiza dzialania programu') do
