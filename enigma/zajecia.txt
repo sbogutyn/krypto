@@ -1,0 +1,12 @@
+1. Rotor pierwszy:
+- funkcja szyfrująca i deszyfrująca jest identyczna
+
+A[i] <> i
+A[A[i]] == i
+
+R1-1[R2-1[R3-1[R[R3[R2[R1[x]]]]]]]
+
+Enc(abc, <b, tekst>) =
+		Enc(abc+1,b) || Enc(abc+1, tekst)
+
+

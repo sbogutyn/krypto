@@ -57,8 +57,7 @@ def odszyfruj_tekst(tekst, a, b):
 	return tlumacz_tekst(tekst, zaszyfruj_alfabet(a, b), letters)
 
 def nwd(a, b):
-	x = a
-	y = b
+	x, y = a, b
 	while (y != 0):
 		c = x % y
 		x = y
