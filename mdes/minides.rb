@@ -24,22 +24,22 @@
 
 require 'optparse'
 
-options = {}
-
+# nazwy plików
 PLAIN = "plain.txt"
 CRYPTO = "crypto.txt"
 DECRYPT = "decrypt.txt"
 KEY = "key.txt"
 
-
 class Szyfrowanie
 
-  def initialize(tekst)
+  def initialize(tekst, klucz)
     @tekst = tekst
+    @klucz = klucz
   end
+  
 
   def to_s
-    "Szyfrowanie: #{@tekst} "
+    "Szyfrowanie: \"#{@tekst}\" z kluczem: \"#{@klucz}\""
   end
 end
 
@@ -60,21 +60,18 @@ def czytaj_plik(nazwa_pliku)
   File.foreach(nazwa_pliku) do |line|
     tekst << line
   end
-  tekst
+  tekst.chomp!
 end
+
+options = {}
 
 optparse = OptionParser.new do |opts|
   opts.banner = "Usage: minides.rb [opcje]"
-  options[:szyfrowanie] = false
-  options[:deszyfrowanie] = false
-  options[:analiza] = false
 
   opts.on('-e', '--szyfrowanie', 'Szyfrowanie tekstu z plain.txt do crypto.txt') do
-    tekst = czytaj_plik(PLAIN).chomp!
-    klucz = czytaj_plik(KEY).chomp!
-    puts tekst
-    puts tekst.length
-    puts Szyfrowanie.new("tekst do zaszyfrowania")
+    tekst = czytaj_plik(PLAIN)
+    klucz = czytaj_plik(KEY)
+    puts Szyfrowanie.new(tekst, klucz)
   end
 
   opts.on('-d', '--deszyfrowanie', 'Deszyfrowanie tekstu z pliku crypto.txt do decrypt.txt') do
